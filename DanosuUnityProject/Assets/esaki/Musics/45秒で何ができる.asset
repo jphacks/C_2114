@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 148bb9ee232b5e64aa772c3409d4dc93, type: 3}
+  m_Name: "45\u79D2\u3067\u4F55\u304C\u3067\u304D\u308B"
+  m_EditorClassIdentifier: 
+  title: "45\u79D2\u3067\u4F55\u304C\u3067\u304D\u308B"
+  videoClip: {fileID: 32900000, guid: e13748fa761fb714ab04a69536b85bab, type: 3}
+  audioClip: {fileID: 0}
+  length: 45
+  difficulty: 1
+  icon: {fileID: 0}
