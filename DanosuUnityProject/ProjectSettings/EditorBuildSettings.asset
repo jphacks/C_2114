@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Aguro/AguroEditScene.unity
+    guid: 258bee2be99228e4aa3c6202ef872b21
+  - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 5deb965500846b64ab123fdbbbc2de24
-  - enabled: 1
-    path: Assets/OsuMusicGame/Scenes/MapSelect.unity
-    guid: c2034909eab5c3a4f91e85efabd98e6c
-  - enabled: 1
-    path: Assets/OsuMusicGame/Scenes/TapTapAim.unity
-    guid: 4fd84d1e8ab02b14bb23158dc7af26e0
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}
