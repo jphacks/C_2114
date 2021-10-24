@@ -30,7 +30,7 @@ public class SoundManager : MonoBehaviour
         audioSource.Play();
     }
 
-    private void Start()
+    private void Awake()
     {
         sounds = soundDataBase.GetSounds();
 
