@@ -20,6 +20,8 @@ public class SoundManager : MonoBehaviour
     private int backIndex;
     private int selectIndex;
     private int playIndex;
+    private int greatIndex;
+    private int goodIndex;
 
     private KindOfSound kindOfSound;
     private int selectedIndex;
@@ -38,6 +40,8 @@ public class SoundManager : MonoBehaviour
         backIndex = PlayerPrefs.GetInt("BackSoundIndex");
         selectIndex = PlayerPrefs.GetInt("SelectSoundIndex");
         playIndex = PlayerPrefs.GetInt("PlaySoundIndex");
+        greatIndex = PlayerPrefs.GetInt("GreatSoundIndex");
+        goodIndex = PlayerPrefs.GetInt("GoodSoundIndex");
 
         kindOfSound = KindOfSound.Transition;
         selectedIndex = -1;
@@ -62,6 +66,24 @@ public class SoundManager : MonoBehaviour
     {
         audioSource.clip = sounds[playIndex];
         audioSource.Play();
+    }
+    public void GreatSE()
+    {
+        audioSource.clip = sounds[greatIndex];
+        audioSource.Play();
+    }
+    public void GoodSE()
+    {
+        audioSource.clip = sounds[goodIndex];
+        audioSource.Play();
+    }
+    public void ChangeGreatSE(int i)
+    {
+        PlayerPrefs.SetInt("GreatSoundIndex", i);
+    }
+    public void ChangeGoodSE(int i)
+    {
+        PlayerPrefs.SetInt("GoodSoundIndex", i);
     }
 
     public void PlaySound(int i)
