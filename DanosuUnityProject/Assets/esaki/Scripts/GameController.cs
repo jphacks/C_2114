@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private MusicManager3D musicManager;
     [SerializeField] private SoundManager sound;
     [SerializeField] private BoardManager board;
+    [SerializeField] private ViewManager viewer;
     [SerializeField] private FadeScript FadePanel;
     [SerializeField] private AudioSource SE;
     public enum State
@@ -45,9 +46,11 @@ public class GameController : MonoBehaviour
                     break; }
             case State.Result: {  
                     bgm.PlayResultBGM(); 
-                    sound.PlaySound(15); 
+                    sound.PlaySound(15);
+                    viewer.PlayRecordData();
                     musicManager.SetInfoOnScoreBoard(PlayerPrefs.GetInt("MusicNumber")); 
-                    board.ShowScore(); anim.InResult(); 
+                    board.ShowScore(); 
+                    anim.InResult(); 
                     break; }
             default: { break; }
         }
