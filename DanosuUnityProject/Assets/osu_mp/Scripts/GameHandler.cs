@@ -51,6 +51,7 @@ public class GameHandler : MonoBehaviour
     [SerializeField] private float addCirclePositionY;
     
     [SerializeField] private List<GameObject> greatPrefabList;
+    [SerializeField] private List<GameObject> goodPrefabList;
 
     private enum OPERATION_MODE
     {
@@ -229,12 +230,13 @@ public class GameHandler : MonoBehaviour
                     {
                         GameObject greatObject = Instantiate(greatPrefabList[0], MainHit.collider.gameObject.transform);
                         greatObject.transform.parent = circleObjectParentGameObject.transform;
-                        
-                        Debug.Log("GREAT");
+                        Destroy(greatObject,1.0f);
                     }
                     else
                     {
-                        Debug.Log("GOOD");
+                        GameObject goodObject = Instantiate(goodPrefabList[0], MainHit.collider.gameObject.transform);
+                        goodObject.transform.parent = circleObjectParentGameObject.transform;
+                        Destroy(goodObject,1.0f);
                     }
                     
                     MainHit.collider.gameObject.GetComponent<Circle>().Got();

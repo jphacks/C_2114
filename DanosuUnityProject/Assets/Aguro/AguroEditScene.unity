@@ -667,10 +667,16 @@ MonoBehaviour:
   addCirclePositionY: 0
   greatPrefabList:
   - {fileID: 1040130845499262286, guid: 5461cfd1629c255458d99ee34276b5f0, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8197617954227451803, guid: a6bf8ec8d573e494284e16b4e9044959, type: 3}
+  - {fileID: 6332023513132169578, guid: 5a89ae6e33335a643831546dde2865b0, type: 3}
+  - {fileID: 6490726183521086735, guid: ad62ed2af4d097a43bae83b30fc65a21, type: 3}
+  - {fileID: 2676017343437216154, guid: 1c9d8a98835626c4c9d92f39704e600e, type: 3}
+  goodPrefabList:
+  - {fileID: 7573615521099123287, guid: 22a7ebb049d4f4d4dab23061427aff1c, type: 3}
+  - {fileID: 8566293564693361920, guid: d72085c93822f714f84469642148506e, type: 3}
+  - {fileID: 7145126733934945220, guid: 9af851c690607734289768f75a9c1fc3, type: 3}
+  - {fileID: 4832170822889244718, guid: 524fa434a2748b843bfea5548389be03, type: 3}
+  - {fileID: 5521495090346663024, guid: 9a1a7a8362f25ba47a5b5c48e5ddeb31, type: 3}
   OperationMode: 0
   CircleGreatRadius: 0.15
 --- !u!4 &1208576770
