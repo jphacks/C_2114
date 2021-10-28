@@ -13,9 +13,6 @@ MonoBehaviour:
   m_Name: MusicDataBase
   m_EditorClassIdentifier: 
   musicList:
-  - {fileID: 11400000, guid: 70e5ef47ee735864eaf76db7478ad7d4, type: 2}
-  - {fileID: 11400000, guid: a4cda8768776f6c4cb51a4d661228812, type: 2}
-  - {fileID: 11400000, guid: 4111559249772924a97539fb9bde2d3f, type: 2}
-  - {fileID: 11400000, guid: 4345333228a2f3f4685c2c28f46f03bc, type: 2}
-  - {fileID: 11400000, guid: d894b73d5c1ae1c4eb64a7c23e194a17, type: 2}
+  - {fileID: 11400000, guid: d5c8e50cd3e5b1644bff6ca4e4956b40, type: 2}
   - {fileID: 11400000, guid: f93a25482a72c004c843625808758a9e, type: 2}
+  - {fileID: 11400000, guid: 4111559249772924a97539fb9bde2d3f, type: 2}

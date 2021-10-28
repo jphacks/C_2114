@@ -40,10 +40,11 @@ public class VideoCapture : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) )
+        //if (Input.GetKeyDown(KeyCode.Return) )
         {
-            MainTextureCamera.transform.position = new Vector3(100.0f, 0.0f, 0.0f);
-            Debug.Log("a");
+            //FIXME: 応急処置です。
+            VideoBackground.transform.position = new Vector3(100.0f, 0.0f, 0.0f);
+            //Debug.Log("a");
         }
     }
 
