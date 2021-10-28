@@ -233,9 +233,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Circle: {fileID: 1048798711757196, guid: 0013f3c552b5a32428fe42d1e1aac4b5, type: 3}
-  MapFile: {fileID: 102900000, guid: 37518ae886d6a0541b01cf8d9ed6f538, type: 3}
-  MainMusic: {fileID: 8300000, guid: f5425c9c148a8624abed0893270872d1, type: 3}
+  MapFile: {fileID: 102900000, guid: fb707ee8540aa2046a9ab821c7267d3a, type: 3}
+  MainMusic: {fileID: 8300000, guid: c461a93b3b09b414ab817d47eca39b88, type: 3}
   HitSound: {fileID: 8300000, guid: 59d4dc4b6f6d5084e9565dd47e737241, type: 3}
+  cursorTailPositionGameObject: {fileID: 1805912083}
+  circleObjectParentGameObject: {fileID: 1169485905}
+  addCirclePositionY: 0
+  OperationMode: 0
 --- !u!4 &882044838
 Transform:
   m_ObjectHideFlags: 0
@@ -346,6 +350,36 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!1 &1169485905
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1169485906}
+  m_Layer: 0
+  m_Name: CircleParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1169485906
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1169485905}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1282732452
 GameObject:
   m_ObjectHideFlags: 0
@@ -5310,3 +5344,33 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &1805912083
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1805912084}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1805912084
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805912083}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
