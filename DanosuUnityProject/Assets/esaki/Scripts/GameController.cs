@@ -102,4 +102,9 @@ public class GameController : MonoBehaviour
     {
         viewer.UpdateSlider(musicManager.GetVideoCurrentTime());
     }
+
+    public void CameraTest()
+    {
+        SceneManager.LoadScene("CameraTest");
+    }
 }

@@ -12,11 +12,11 @@ public class TextScroll : MonoBehaviour
 
     private IEnumerator routine;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        x = transform.position.x;
-        y = transform.position.y;
-        z = transform.position.z;
+        x = transform.localPosition.x;
+        y = transform.localPosition.y;
+        z = transform.localPosition.z;
     }
 
     public void StartScroll()
@@ -33,7 +33,7 @@ public class TextScroll : MonoBehaviour
         {
             StopCoroutine(routine);
             enable = false;
-            transform.position = new Vector3(x, y, z);
+            transform.localPosition = new Vector3(x, y, z);
         }
     }
 
@@ -41,13 +41,12 @@ public class TextScroll : MonoBehaviour
     {
         while (_y < MaxY)
         {
-            Debug.Log($"{_y} < {MaxY}");
             _y += Speed;
-            transform.position = new Vector3(x, _y, z);
+            transform.localPosition = new Vector3(x, _y, z);
             yield return null;
         }
         Debug.Log("Credit End");
         enable = false;
-        transform.position = new Vector3(x, y, z);
+        transform.localPosition = new Vector3(x, y, z);
     }
 }

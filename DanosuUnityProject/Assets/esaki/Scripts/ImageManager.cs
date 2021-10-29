@@ -41,6 +41,6 @@ public class ImageManager : MonoBehaviour
     }
     public void SetTitle()
     {
-        title.text = $"{index+1}.{sprite[index].name}";
+        title.text = $"{sprite[index].name}";
     }
 }

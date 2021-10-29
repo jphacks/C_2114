@@ -54,7 +54,6 @@ public class ViewManager : MonoBehaviour
         if (!slider.enabled)
         {
             slider.value = t;
-            Debug.Log(slider.value);
         }
     }
 }
