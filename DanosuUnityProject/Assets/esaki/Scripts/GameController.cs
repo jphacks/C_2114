@@ -12,6 +12,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private BoardManager board;
     [SerializeField] private ViewManager viewer;
     [SerializeField] private FadeScript FadePanel;
+    [SerializeField] private GameObject CameraUI;
     [SerializeField] private AudioSource SE;
     public enum State
     {
@@ -46,8 +47,11 @@ public class GameController : MonoBehaviour
                     break; }
             case State.Result: {  
                     bgm.PlayResultBGM(); 
-                    sound.PlaySound(15);
-                    viewer.PlayRecordData();
+                    sound.PlaySound(15); 
+                    bgm.MuteBGM();
+                    musicManager.SelectMusic(PlayerPrefs.GetInt("MusicNumber"));
+                    viewer.SetMaxTime(musicManager.GetCurrentMusicLength());
+                    viewer.InitRecordData();
                     musicManager.SetInfoOnScoreBoard(PlayerPrefs.GetInt("MusicNumber")); 
                     board.ShowScore(); 
                     anim.InResult(); 
@@ -77,5 +81,25 @@ public class GameController : MonoBehaviour
     private void SetMusic()
     {
         PlayerPrefs.SetInt("MusicNumber", musicManager.GetMusicIndex());
+    }
+
+    public void ViewReplay()
+    {
+        float t = viewer.GetTime();
+        bgm.MuteBGM();
+        musicManager.ResumeVideo(t);
+        viewer.PlayRecordData(t);
+    }
+
+    public void StopView()
+    {
+        bgm.UnMuteBGM();
+        musicManager.StopVideo();
+        viewer.StopView();
+    }
+
+    private void Update()
+    {
+        viewer.UpdateSlider(musicManager.GetVideoCurrentTime());
     }
 }
