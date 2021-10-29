@@ -221,22 +221,22 @@ public class GameHandler : MonoBehaviour
             tmpCursor = MainCamera.WorldToScreenPoint(rightHandCursorTrail.transform.position);
             tmpCursor.z = 0;
             MainRay = MainCamera.ScreenPointToRay(tmpCursor);
-            CursorCollideDetection();
+            CursorCollideDetection(rightHandCursorTrail);
 
             tmpCursor = MainCamera.WorldToScreenPoint(rightFootCursorTrail.transform.position);
             tmpCursor.z = 0;
             MainRay = MainCamera.ScreenPointToRay(tmpCursor);
-            CursorCollideDetection();
+            CursorCollideDetection(rightFootCursorTrail);
 
             tmpCursor = MainCamera.WorldToScreenPoint(leftHandCursorTrail.transform.position);
             tmpCursor.z = 0;
             MainRay = MainCamera.ScreenPointToRay(tmpCursor);
-            CursorCollideDetection();
+            CursorCollideDetection(leftHandCursorTrail);
 
             tmpCursor = MainCamera.WorldToScreenPoint(leftFootCursorTrail.transform.position);
             tmpCursor.z = 0;
             MainRay = MainCamera.ScreenPointToRay(tmpCursor);
-            CursorCollideDetection();
+            CursorCollideDetection(leftFootCursorTrail);
 
 
             // Spawn object
@@ -306,7 +306,7 @@ public class GameHandler : MonoBehaviour
         }
     }
 
-    private void CursorCollideDetection()
+    private void CursorCollideDetection(GameObject cursorGameObject)
     {
         if (Physics.Raycast(MainRay, out MainHit))
         {
@@ -318,8 +318,8 @@ public class GameHandler : MonoBehaviour
                 var hitCirclePosition = MainHit.collider.gameObject.transform.position;
                 circlePosition2D = new Vector2(hitCirclePosition.x, hitCirclePosition.y);
                 Vector2 cursorPosition2D;
-                cursorPosition2D = new Vector2(rightHandCursorTrail.transform.position.x,
-                    rightHandCursorTrail.gameObject.transform.position.y);
+                cursorPosition2D = new Vector2(cursorGameObject.transform.position.x,
+                    cursorGameObject.gameObject.transform.position.y);
                 if (Vector2.Distance(circlePosition2D, cursorPosition2D) <= CircleGreatRadius)
                 {
                     GameObject greatObject = Instantiate(greatPrefabList[0], MainHit.collider.gameObject.transform);

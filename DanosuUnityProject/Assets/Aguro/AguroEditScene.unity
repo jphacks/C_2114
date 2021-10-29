@@ -10191,7 +10191,7 @@ MonoBehaviour:
   - {fileID: 7145126733934945220, guid: 9af851c690607734289768f75a9c1fc3, type: 3}
   - {fileID: 4832170822889244718, guid: 524fa434a2748b843bfea5548389be03, type: 3}
   - {fileID: 5521495090346663024, guid: 9a1a7a8362f25ba47a5b5c48e5ddeb31, type: 3}
-  OperationMode: 1
+  OperationMode: 0
   CircleGreatRadius: 0.15
 --- !u!4 &1208576770
 Transform:
