@@ -28,8 +28,11 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySound(AudioClip clip)
     {
-        audioSource.clip = clip;
-        audioSource.Play();
+        if (clip != null)
+        {
+            audioSource.clip = clip;
+            audioSource.Play();
+        }
     }
 
     private void Awake()
@@ -79,11 +82,11 @@ public class SoundManager : MonoBehaviour
     }
     public void ChangeGreatSE(int i)
     {
-        PlayerPrefs.SetInt("GreatSoundIndex", i);
+        PlayerPrefs.SetInt("GreatSound", i);
     }
     public void ChangeGoodSE(int i)
     {
-        PlayerPrefs.SetInt("GoodSoundIndex", i);
+        PlayerPrefs.SetInt("GoodSound", i);
     }
 
     public void PlaySound(int i)

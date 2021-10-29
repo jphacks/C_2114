@@ -58,4 +58,13 @@ public class BgmManager : MonoBehaviour
     {
         PlayerPrefs.SetFloat("Volume", bgm.volume);
     }
+
+    public void MuteBGM()
+    {
+        bgm.mute = true;
+    }
+    public void UnMuteBGM()
+    {
+        bgm.mute = false;
+    }
 }

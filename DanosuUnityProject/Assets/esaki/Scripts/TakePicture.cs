@@ -11,10 +11,12 @@ public class TakePicture : MonoBehaviour
     [SerializeField] private GameObject ScreenImg;
     [SerializeField] private Text countDown;
 
+    [SerializeField] private GameObject CameraUI;
+
     [SerializeField] private SoundManager soundManager;
     [SerializeField] private AudioClip clip;
 
-    private string folder = "/Screenshot/";
+    private string folder = "/esaki/Screenshot/";
     private float waitingTime;
     private bool shot;
 
@@ -78,4 +80,12 @@ public class TakePicture : MonoBehaviour
         shot = true;
     }
 
+    public void ShowCameraUI()
+    {
+        CameraUI.SetActive(true);
+    }
+    public void HideCameraUI()
+    {
+        CameraUI.SetActive(false);
+    }
 }
