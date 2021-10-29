@@ -9,19 +9,17 @@ public class Circle : MonoBehaviour
     private float PosX = 0;
     private float PosY = 0;
     private float PosZ = 0;
-    [HideInInspector]
-    public int PosA = 0;
+    [HideInInspector] public int PosA = 0;
 
     private Color MainColor, MainColor1, MainColor2; // Circle sprites color
     public GameObject MainApproach, MainFore, MainBack; // Circle objects
 
-    [HideInInspector]
-    public SpriteRenderer Fore, Back, Appr; // Circle sprites
+    [HideInInspector] public SpriteRenderer Fore, Back, Appr; // Circle sprites
 
     // Checker stuff
     private bool RemoveNow = false;
     private bool GotIt = false;
-    
+
     [SerializeField] private List<GameObject> missPrefabList;
     private int missEffectIndex;
 
@@ -43,7 +41,6 @@ public class Circle : MonoBehaviour
         {
             missEffectIndex = PlayerPrefs.GetInt("MissEffect");
         }
-        
     }
 
     // Set circle configuration
@@ -67,17 +64,25 @@ public class Circle : MonoBehaviour
     }
 
     // If circle wasn't clicked
-    public void Remove ()
+    public void Remove()
     {
         if (!GotIt)
         {
             RemoveNow = true;
             this.enabled = true;
+
+            //MissEffectを追加します。
+            GameObject missObject = Instantiate(missPrefabList[missEffectIndex], this.transform);
+            missObject.transform.Translate(Vector3.back);
+            missObject.transform.parent = this.transform;
+            Destroy(missObject, 1.0f);
+            PlayerPrefs.SetInt("Miss", PlayerPrefs.GetInt("Miss") + 1);
+            PlayerPrefs.SetInt("Chain", 0);
         }
     }
 
     // If circle was clicked
-    public void Got ()
+    public void Got()
     {
         if (!RemoveNow)
         {
@@ -101,12 +106,13 @@ public class Circle : MonoBehaviour
                 GameHandler.ClickedCount++;
                 break;
             }
+
             yield return null;
         }
     }
 
     // Main Update
-    private void Update ()
+    private void Update()
     {
         // Approach Circle modifier
         if (MainApproach.transform.localScale.x >= 0.9f)
@@ -118,7 +124,6 @@ public class Circle : MonoBehaviour
             Fore.color = MainColor1;
             Back.color = MainColor2;
             Appr.color = MainColor;
-
         }
         // If circle wasn't clicked
         else if (!GotIt)
@@ -143,16 +148,9 @@ public class Circle : MonoBehaviour
                     gameObject.transform.position = new Vector2(-101, -101);
                     this.enabled = false;
                 }
-                
-                //MissEffectを追加します。
-                GameObject missObject = Instantiate(missPrefabList[missEffectIndex], this.transform);
-                missObject.transform.Translate(Vector3.back);
-
-                missObject.transform.parent = this.transform;
-                
-                Destroy(missObject, 1.0f);
             }
         }
+
         // If circle was clicked
         if (GotIt)
         {

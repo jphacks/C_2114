@@ -60,6 +60,10 @@ public class GameHandler : MonoBehaviour
     private int greatEffectIndex;
     private int goodEffectIndex;
 
+    [SerializeField] private int greatScoreRate = 100;
+    [SerializeField] private int goodScoreRate = 50;
+    [SerializeField] private int chainScoreRate = 5;
+
 
     private enum OPERATION_MODE
     {
@@ -320,19 +324,30 @@ public class GameHandler : MonoBehaviour
                     cursorGameObject.gameObject.transform.position.y);
                 if (Vector2.Distance(circlePosition2D, cursorPosition2D) <= CircleGreatRadius)
                 {
-                    GameObject greatObject = Instantiate(greatPrefabList[greatEffectIndex], MainHit.collider.gameObject.transform);
+                    GameObject greatObject = Instantiate(greatPrefabList[greatEffectIndex],
+                        MainHit.collider.gameObject.transform);
                     greatObject.transform.Translate(Vector3.back);
                     greatObject.transform.parent = circleObjectParentGameObject.transform;
                     Destroy(greatObject, 1.0f);
+                    PlayerPrefs.SetInt("Great", PlayerPrefs.GetInt("Great") + 1);
+                    PlayerPrefs.SetInt("Score",
+                        PlayerPrefs.GetInt("Score") + greatScoreRate +
+                        PlayerPrefs.GetInt("Chain") * chainScoreRate * 2);
+                    PlayerPrefs.SetInt("Chain", PlayerPrefs.GetInt("Chain") + 1);
+                    PlayerPrefs.SetInt("MaxChain", Mathf.Max(PlayerPrefs.GetInt("Chain"),PlayerPrefs.GetInt("MaxChain")));
                 }
                 else
                 {
-                    GameObject goodObject = Instantiate(goodPrefabList[goodEffectIndex], MainHit.collider.gameObject.transform);
+                    GameObject goodObject = Instantiate(goodPrefabList[goodEffectIndex],
+                        MainHit.collider.gameObject.transform);
                     goodObject.transform.parent = circleObjectParentGameObject.transform;
-
                     goodObject.transform.Translate(Vector3.back);
-
                     Destroy(goodObject, 1.0f);
+                    PlayerPrefs.SetInt("Good", PlayerPrefs.GetInt("Good") + 1);
+                    PlayerPrefs.SetInt("Score",
+                        PlayerPrefs.GetInt("Score") + goodScoreRate + PlayerPrefs.GetInt("Chain") * chainScoreRate);
+                    PlayerPrefs.SetInt("Chain", PlayerPrefs.GetInt("Chain") + 1);
+                    PlayerPrefs.SetInt("MaxChain", Mathf.Max(PlayerPrefs.GetInt("Chain"),PlayerPrefs.GetInt("MaxChain")));
                 }
 
                 MainHit.collider.gameObject.GetComponent<Circle>().Got();
