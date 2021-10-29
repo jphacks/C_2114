@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,12 +21,29 @@ public class Circle : MonoBehaviour
     // Checker stuff
     private bool RemoveNow = false;
     private bool GotIt = false;
+    
+    [SerializeField] private List<GameObject> missPrefabList;
+    private int missEffectIndex;
 
     private void Awake()
     {
         Fore = MainFore.GetComponent<SpriteRenderer>();
         Back = MainBack.GetComponent<SpriteRenderer>();
         Appr = MainApproach.GetComponent<SpriteRenderer>();
+    }
+
+    private void Start()
+    {
+        if (!PlayerPrefs.HasKey("MissEffect"))
+        {
+            PlayerPrefs.SetInt("MissEffect", 0);
+            missEffectIndex = 0;
+        }
+        else
+        {
+            missEffectIndex = PlayerPrefs.GetInt("MissEffect");
+        }
+        
     }
 
     // Set circle configuration
@@ -125,6 +143,14 @@ public class Circle : MonoBehaviour
                     gameObject.transform.position = new Vector2(-101, -101);
                     this.enabled = false;
                 }
+                
+                //MissEffectを追加します。
+                GameObject missObject = Instantiate(missPrefabList[missEffectIndex], this.transform);
+                missObject.transform.Translate(Vector3.back);
+
+                missObject.transform.parent = this.transform;
+                
+                Destroy(missObject, 1.0f);
             }
         }
         // If circle was clicked

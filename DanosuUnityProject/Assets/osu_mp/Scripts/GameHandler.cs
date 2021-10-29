@@ -57,6 +57,10 @@ public class GameHandler : MonoBehaviour
     [SerializeField] private List<GameObject> greatPrefabList;
     [SerializeField] private List<GameObject> goodPrefabList;
 
+    private int greatEffectIndex;
+    private int goodEffectIndex;
+
+
     private enum OPERATION_MODE
     {
         MOUSE_CURSOR,
@@ -81,6 +85,26 @@ public class GameHandler : MonoBehaviour
         pHitSound = HitSound;
         CircleList = new List<GameObject>();
         ReadCircles(AssetDatabase.GetAssetPath(MapFile));
+
+        if (!PlayerPrefs.HasKey("GreatEffect"))
+        {
+            PlayerPrefs.SetInt("GreatEffect", 0);
+            greatEffectIndex = 0;
+        }
+        else
+        {
+            greatEffectIndex = PlayerPrefs.GetInt("GreatEffect");
+        }
+
+        if (!PlayerPrefs.HasKey("GoodEffect"))
+        {
+            PlayerPrefs.SetInt("GoodEffect", 0);
+            goodEffectIndex = 0;
+        }
+        else
+        {
+            goodEffectIndex = PlayerPrefs.GetInt("GoodEffect");
+        }
     }
 
     // MAP READER
@@ -246,45 +270,19 @@ public class GameHandler : MonoBehaviour
                 ObjCount++;
             }
 
-            // Check if cursor is over object
-            // if (Physics.Raycast(MainRay, out MainHit))
-            // {
-            //     if (MainHit.collider.name == "Circle(Clone)" && timer >= MainHit.collider.gameObject.GetComponent<Circle>().PosA + ApprRate)
-            //     {
-            //         //GOOD, GREAT判定
-            //         Vector2 circlePosition2D;
-            //         var hitCirclePosition = MainHit.collider.gameObject.transform.position;
-            //         circlePosition2D = new Vector2(hitCirclePosition.x,hitCirclePosition.y);
-            //         Vector2 cursorPosition2D;
-            //         cursorPosition2D = new Vector2(rightHandCursorTrail.transform.position.x,rightHandCursorTrail.gameObject.transform.position.y);
-            //         if (Vector2.Distance(circlePosition2D,cursorPosition2D)<=CircleGreatRadius)
-            //         {
-            //             GameObject greatObject = Instantiate(greatPrefabList[0], MainHit.collider.gameObject.transform);
-            //             greatObject.transform.parent = circleObjectParentGameObject.transform;
-            //             Destroy(greatObject,1.0f);
-            //         }
-            //         else
-            //         {
-            //             GameObject goodObject = Instantiate(goodPrefabList[0], MainHit.collider.gameObject.transform);
-            //             goodObject.transform.parent = circleObjectParentGameObject.transform;
-            //             Destroy(goodObject,1.0f);
-            //         }
-            //         
-            //         MainHit.collider.gameObject.GetComponent<Circle>().Got();
-            //         MainHit.collider.enabled = false;
-            //         ClickedCount++;
-            //     }
-            // }
-
             switch (OperationMode)
             {
                 case OPERATION_MODE.MOUSE_CURSOR:
                     // Cursor trail movement
                     MousePosition = MainCamera.ScreenToWorldPoint(Input.mousePosition);
-                    rightHandCursorTrail.transform.position = new Vector3(MousePosition.x + 0.3f, MousePosition.y + 0.3f, -9);
-                    rightFootCursorTrail.transform.position = new Vector3(MousePosition.x + 0.3f, MousePosition.y - 0.3f, -9);
-                    leftHandCursorTrail.transform.position = new Vector3(MousePosition.x - 0.3f, MousePosition.y + 0.3f, -9);
-                    leftFootCursorTrail.transform.position = new Vector3(MousePosition.x - 0.3f, MousePosition.y - 0.3f, -9);
+                    rightHandCursorTrail.transform.position =
+                        new Vector3(MousePosition.x + 0.3f, MousePosition.y + 0.3f, -9);
+                    rightFootCursorTrail.transform.position =
+                        new Vector3(MousePosition.x + 0.3f, MousePosition.y - 0.3f, -9);
+                    leftHandCursorTrail.transform.position =
+                        new Vector3(MousePosition.x - 0.3f, MousePosition.y + 0.3f, -9);
+                    leftFootCursorTrail.transform.position =
+                        new Vector3(MousePosition.x - 0.3f, MousePosition.y - 0.3f, -9);
                     break;
                 case OPERATION_MODE.TDPT:
                     Vector3 position;
@@ -322,14 +320,18 @@ public class GameHandler : MonoBehaviour
                     cursorGameObject.gameObject.transform.position.y);
                 if (Vector2.Distance(circlePosition2D, cursorPosition2D) <= CircleGreatRadius)
                 {
-                    GameObject greatObject = Instantiate(greatPrefabList[0], MainHit.collider.gameObject.transform);
+                    GameObject greatObject = Instantiate(greatPrefabList[greatEffectIndex], MainHit.collider.gameObject.transform);
+                    greatObject.transform.Translate(Vector3.back);
                     greatObject.transform.parent = circleObjectParentGameObject.transform;
                     Destroy(greatObject, 1.0f);
                 }
                 else
                 {
-                    GameObject goodObject = Instantiate(goodPrefabList[0], MainHit.collider.gameObject.transform);
+                    GameObject goodObject = Instantiate(goodPrefabList[goodEffectIndex], MainHit.collider.gameObject.transform);
                     goodObject.transform.parent = circleObjectParentGameObject.transform;
+
+                    goodObject.transform.Translate(Vector3.back);
+
                     Destroy(goodObject, 1.0f);
                 }
 
