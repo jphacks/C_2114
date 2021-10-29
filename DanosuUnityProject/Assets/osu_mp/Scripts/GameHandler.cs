@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 
 public class GameHandler : MonoBehaviour
 {
@@ -45,9 +46,22 @@ public class GameHandler : MonoBehaviour
     private Ray MainRay;
     private RaycastHit MainHit;
 
-    [SerializeField] private GameObject cursorTailPositionGameObject;
+    [SerializeField] private GameObject cursorRightHandTargetPositionGameObject;
     [SerializeField] private GameObject circleObjectParentGameObject;
     [SerializeField] private float addCirclePositionY;
+    
+    [SerializeField] private List<GameObject> greatPrefabList;
+
+    private enum OPERATION_MODE
+    {
+        MOUSE_CURSOR,
+        TDPT,
+    }
+
+    [SerializeField] private OPERATION_MODE OperationMode;
+    [SerializeField] private float CircleGreatRadius = 0.15f;
+    
+    
 
     private void Start()
     {
@@ -60,6 +74,8 @@ public class GameHandler : MonoBehaviour
         pHitSound = HitSound;
         CircleList = new List<GameObject>();
         ReadCircles(AssetDatabase.GetAssetPath(MapFile));
+        
+        
     }
 
     // MAP READER
@@ -185,7 +201,7 @@ public class GameHandler : MonoBehaviour
             // Debug.Log(Input.mousePosition);
             // Debug.Log(cursorTailPositionGameObject.transform.position);
             // Debug.Log(MainCamera.WorldToScreenPoint(cursorTailPositionGameObject.transform.position));
-            Vector3 tmpCursor = MainCamera.WorldToScreenPoint(cursorTailPositionGameObject.transform.position);
+            Vector3 tmpCursor = MainCamera.WorldToScreenPoint(CursorTrail.transform.position);
             tmpCursor.z = 0;
             MainRay = MainCamera.ScreenPointToRay(tmpCursor);
 
@@ -202,17 +218,45 @@ public class GameHandler : MonoBehaviour
             {
                 if (MainHit.collider.name == "Circle(Clone)" && timer >= MainHit.collider.gameObject.GetComponent<Circle>().PosA + ApprRate)
                 {
+                    //GOOD, GREAT判定
+                    Vector2 circlePosition2D;
+                    var hitCirclePosition = MainHit.collider.gameObject.transform.position;
+                    circlePosition2D = new Vector2(hitCirclePosition.x,hitCirclePosition.y);
+                    Vector2 cursorPosition2D;
+                    cursorPosition2D = new Vector2(CursorTrail.transform.position.x,CursorTrail.gameObject.transform.position.y);
+                    Debug.Log(Vector2.Distance(circlePosition2D,cursorPosition2D));
+                    if (Vector2.Distance(circlePosition2D,cursorPosition2D)<=CircleGreatRadius)
+                    {
+                        GameObject greatObject = Instantiate(greatPrefabList[0], MainHit.collider.gameObject.transform);
+                        greatObject.transform.parent = circleObjectParentGameObject.transform;
+                        
+                        Debug.Log("GREAT");
+                    }
+                    else
+                    {
+                        Debug.Log("GOOD");
+                    }
+                    
                     MainHit.collider.gameObject.GetComponent<Circle>().Got();
                     MainHit.collider.enabled = false;
                     ClickedCount++;
-                    
                 }
             }
 
-            // Cursor trail movement
-            // MousePosition = MainCamera.ScreenToWorldPoint(Input.mousePosition);
-            // CursorTrail.transform.position = new Vector3(MousePosition.x, MousePosition.y, -9);
-            CursorTrail.transform.position = new Vector3(cursorTailPositionGameObject.transform.position.x, cursorTailPositionGameObject.transform.position.y, -9);
+            switch (OperationMode)
+            {
+                case OPERATION_MODE.MOUSE_CURSOR:
+                    // Cursor trail movement
+                    MousePosition = MainCamera.ScreenToWorldPoint(Input.mousePosition);
+                    CursorTrail.transform.position = new Vector3(MousePosition.x, MousePosition.y, -9);
+                    break;
+                case OPERATION_MODE.TDPT:
+                    var position = cursorRightHandTargetPositionGameObject.transform.position;
+                    CursorTrail.transform.position = new Vector3(position.x, position.y, -9);
+                    break;
+                default:
+                    break;
+            }
 
             yield return null;
         }
