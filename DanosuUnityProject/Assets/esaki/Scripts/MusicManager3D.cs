@@ -24,12 +24,12 @@ public class MusicManager3D : MonoBehaviour
         if (musics.Count < 1)
         {
             Debug.LogError("データベースに曲が存在しません");
-        }
+        }        
+        // 選択曲の初期設定
+        index = 0;
     }
     void Start()
     {
-        // 選択曲の初期設定
-        index = 0;
         UpdateInfoBoard();
 
         // 曲ごとに選択ボタンをスクロールビューに追加
@@ -74,7 +74,16 @@ public class MusicManager3D : MonoBehaviour
 
     public void StopVideo()
     {
-        videoPlayer.Stop();
+        videoPlayer.Pause();
+    }
+
+    public void ResumeVideo(float t)
+    {
+        if (videoPlayer.clip != null)
+        {
+            videoPlayer.time = t;
+            videoPlayer.Play();
+        }
     }
 
     public void UpdateInfoBoard()
@@ -104,5 +113,15 @@ public class MusicManager3D : MonoBehaviour
             default: { _difficulty = "☆☆☆☆☆"; break; }
         }
         return _difficulty;
+    }
+
+    public float GetCurrentMusicLength()
+    {
+        return float.Parse(musics[index].GetLength());
+    }
+
+    public float GetVideoCurrentTime()
+    {
+        return (float)videoPlayer.time;
     }
 }

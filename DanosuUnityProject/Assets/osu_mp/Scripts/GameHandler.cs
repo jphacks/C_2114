@@ -5,19 +5,19 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class GameHandler : MonoBehaviour
 {
     // ----------------------------------------------------------------------------
 
-    [Header("Objects")]
-    public GameObject Circle; // Circle Object
+    [Header("Objects")] public GameObject Circle; // Circle Object
 
-    [Header("Map")]
-    public DefaultAsset MapFile; // Map file (.osu format), attach from editor
+    [Header("Map")] public DefaultAsset MapFile; // Map file (.osu format), attach from editor
     public AudioClip MainMusic; // Music file, attach from editor
-    public AudioClip HitSound; // Hit sound
+    public List<AudioClip> GreatSoundList; // Hit sound
+    public List<AudioClip> GoodSoundList; // Hit sound
 
     // ----------------------------------------------------------------------------
 
@@ -30,7 +30,7 @@ public class GameHandler : MonoBehaviour
     public static int ClickedCount = 0; // Clicked objects counter
     private static int ObjCount = 0; // Spawned objects counter
 
-    private List<GameObject> CircleList; // Circles List
+    [SerializeField] private List<GameObject> CircleList; // Circles List
     private static string[] LineParams; // Object Parameters
 
     // Audio stuff
@@ -41,16 +41,31 @@ public class GameHandler : MonoBehaviour
 
     // Other stuff
     private Camera MainCamera;
-    private GameObject CursorTrail;
+    private GameObject rightHandCursorTrail;
+    private GameObject leftHandCursorTrail;
+    private GameObject rightFootCursorTrail;
+    private GameObject leftFootCursorTrail;
     private Vector3 MousePosition;
     private Ray MainRay;
     private RaycastHit MainHit;
 
-    [SerializeField] private GameObject cursorRightHandTargetPositionGameObject;
+    [SerializeField] private GameObject cursorRightHandTargetGameObject;
+    [SerializeField] private GameObject cursorLeftHandTargetGameObject;
+    [SerializeField] private GameObject cursorRightFootTargetGameObject;
+    [SerializeField] private GameObject cursorLeftFootTargetGameObject;
     [SerializeField] private GameObject circleObjectParentGameObject;
     [SerializeField] private float addCirclePositionY;
-    
+
     [SerializeField] private List<GameObject> greatPrefabList;
+    [SerializeField] private List<GameObject> goodPrefabList;
+
+    private int greatEffectIndex;
+    private int goodEffectIndex;
+
+    [SerializeField] private int greatScoreRate = 100;
+    [SerializeField] private int goodScoreRate = 50;
+    [SerializeField] private int chainScoreRate = 5;
+
 
     private enum OPERATION_MODE
     {
@@ -60,22 +75,41 @@ public class GameHandler : MonoBehaviour
 
     [SerializeField] private OPERATION_MODE OperationMode;
     [SerializeField] private float CircleGreatRadius = 0.15f;
-    
-    
+    [SerializeField] private SoundManager soundManager;
 
     private void Start()
     {
         MainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         Music = GameObject.Find("Music Source").GetComponent<AudioSource>();
         Sounds = gameObject.GetComponent<AudioSource>();
-        CursorTrail = GameObject.Find("Cursor Trail");
+        rightHandCursorTrail = GameObject.Find("RightHandCursorTrail");
+        leftHandCursorTrail = GameObject.Find("LeftHandCursorTrail");
+        rightFootCursorTrail = GameObject.Find("RightFootCursorTrail");
+        leftFootCursorTrail = GameObject.Find("LeftFootCursorTrail");
         Music.clip = MainMusic;
         pSounds = Sounds;
-        pHitSound = HitSound;
         CircleList = new List<GameObject>();
         ReadCircles(AssetDatabase.GetAssetPath(MapFile));
-        
-        
+
+        if (!PlayerPrefs.HasKey("GreatEffect"))
+        {
+            PlayerPrefs.SetInt("GreatEffect", 0);
+            greatEffectIndex = 0;
+        }
+        else
+        {
+            greatEffectIndex = PlayerPrefs.GetInt("GreatEffect");
+        }
+
+        if (!PlayerPrefs.HasKey("GoodEffect"))
+        {
+            PlayerPrefs.SetInt("GoodEffect", 0);
+            goodEffectIndex = 0;
+        }
+        else
+        {
+            goodEffectIndex = PlayerPrefs.GetInt("GoodEffect");
+        }
     }
 
     // MAP READER
@@ -86,12 +120,12 @@ public class GameHandler : MonoBehaviour
         string line;
 
         // Skip to [HitObjects] part
-        while(true)
+        while (true)
         {
             if (reader.ReadLine() == "[HitObjects]")
                 break;
         }
-            
+
         int TotalLines = 0;
 
         // Count all lines
@@ -106,7 +140,7 @@ public class GameHandler : MonoBehaviour
         reader = new StreamReader(path);
 
         // Skip to [HitObjects] part again
-        while(true)
+        while (true)
         {
             if (reader.ReadLine() == "[HitObjects]")
                 break;
@@ -151,9 +185,13 @@ public class GameHandler : MonoBehaviour
             CircleObject.GetComponent<Circle>().Fore.sortingOrder = ForeOrder;
             CircleObject.GetComponent<Circle>().Back.sortingOrder = BackOrder;
             CircleObject.GetComponent<Circle>().Appr.sortingOrder = ApproachOrder;
-            CircleObject.transform.localPosition += new Vector3((float) CircleObject.transform.localPosition.x, (float) CircleObject.transform.localPosition.y, (float) Z_Index);
+            CircleObject.transform.localPosition += new Vector3((float) CircleObject.transform.localPosition.x,
+                (float) CircleObject.transform.localPosition.y, (float) Z_Index);
             CircleObject.transform.SetAsFirstSibling();
-            ForeOrder--; BackOrder--; ApproachOrder--; Z_Index += 0.01f;
+            ForeOrder--;
+            BackOrder--;
+            ApproachOrder--;
+            Z_Index += 0.01f;
 
             int FlipY = 384 - int.Parse(LineParams[1]); // Flip Y axis
 
@@ -166,22 +204,27 @@ public class GameHandler : MonoBehaviour
 
             // Resolution set
             float NewRangeX = ((AdjustedX - PaddingX) - PaddingX);
-            float NewValueX = ((int.Parse(LineParams[0]) * NewRangeX) / 512f) + PaddingX + ((Screen.width - AdjustedX) / 2f);
+            float NewValueX = ((int.Parse(LineParams[0]) * NewRangeX) / 512f) + PaddingX +
+                              ((Screen.width - AdjustedX) / 2f);
             float NewRangeY = Screen.height;
             float NewValueY = ((FlipY * NewRangeY) / 512f) + PaddingY;
 
-            Vector3 MainPos = MainCamera.ScreenToWorldPoint(new Vector3 (NewValueX, NewValueY, 0)); // Convert from screen position to world position
+            Vector3 MainPos =
+                MainCamera.ScreenToWorldPoint(new Vector3(NewValueX, NewValueY,
+                    0)); // Convert from screen position to world position
             Circle MainCircle = CircleObject.GetComponent<Circle>();
 
-            MainCircle.Set(MainPos.x, MainPos.y+addCirclePositionY, CircleObject.transform.position.z, int.Parse(LineParams[2]) - ApprRate);
+            MainCircle.Set(MainPos.x, MainPos.y + addCirclePositionY, CircleObject.transform.position.z,
+                int.Parse(LineParams[2]) - ApprRate);
 
             CircleList.Add(CircleObject);
         }
+
         GameStart();
     }
 
     // END MAP READER
-	
+
     private void GameStart()
     {
         Application.targetFrameRate = -1; // Unlimited framerate
@@ -193,54 +236,56 @@ public class GameHandler : MonoBehaviour
     {
         while (true)
         {
+            // 曲の再生が終わっていたらシーン遷移します。
+            if (Music.time + Time.deltaTime > Music.clip.length && Music.isPlaying)
+            {
+                PlayerPrefs.SetInt("State", 3);
+                SceneManager.LoadScene("Studio3D");
+            }
+
+            if (ObjCount >= CircleList.Count)
+            {
+                yield return null;
+                continue;
+            }
+
             timer = (Music.time * 1000); // Convert timer
             DelayPos = (CircleList[ObjCount].GetComponent<Circle>().PosA);
             //MainRay = MainCamera.ScreenPointToRay(Input.mousePosition);
-            
+
             //マウスカーソルの代わりにVRMアバターの右手をノーツを叩けたかの判定に使用します。
             // Debug.Log(Input.mousePosition);
             // Debug.Log(cursorTailPositionGameObject.transform.position);
             // Debug.Log(MainCamera.WorldToScreenPoint(cursorTailPositionGameObject.transform.position));
-            Vector3 tmpCursor = MainCamera.WorldToScreenPoint(CursorTrail.transform.position);
+
+            // FIXME: 右手、左手、右足、左足それぞれのノーツの当たり判定をコピーペーストで書いています…。
+            Vector3 tmpCursor;
+            tmpCursor = MainCamera.WorldToScreenPoint(rightHandCursorTrail.transform.position);
             tmpCursor.z = 0;
             MainRay = MainCamera.ScreenPointToRay(tmpCursor);
+            CursorCollideDetection(rightHandCursorTrail);
+
+            tmpCursor = MainCamera.WorldToScreenPoint(rightFootCursorTrail.transform.position);
+            tmpCursor.z = 0;
+            MainRay = MainCamera.ScreenPointToRay(tmpCursor);
+            CursorCollideDetection(rightFootCursorTrail);
+
+            tmpCursor = MainCamera.WorldToScreenPoint(leftHandCursorTrail.transform.position);
+            tmpCursor.z = 0;
+            MainRay = MainCamera.ScreenPointToRay(tmpCursor);
+            CursorCollideDetection(leftHandCursorTrail);
+
+            tmpCursor = MainCamera.WorldToScreenPoint(leftFootCursorTrail.transform.position);
+            tmpCursor.z = 0;
+            MainRay = MainCamera.ScreenPointToRay(tmpCursor);
+            CursorCollideDetection(leftFootCursorTrail);
+
 
             // Spawn object
             if (timer >= DelayPos)
             {
                 CircleList[ObjCount].GetComponent<Circle>().Spawn();
                 ObjCount++;
-                
-            }
-
-            // Check if cursor is over object
-            if (Physics.Raycast(MainRay, out MainHit))
-            {
-                if (MainHit.collider.name == "Circle(Clone)" && timer >= MainHit.collider.gameObject.GetComponent<Circle>().PosA + ApprRate)
-                {
-                    //GOOD, GREAT判定
-                    Vector2 circlePosition2D;
-                    var hitCirclePosition = MainHit.collider.gameObject.transform.position;
-                    circlePosition2D = new Vector2(hitCirclePosition.x,hitCirclePosition.y);
-                    Vector2 cursorPosition2D;
-                    cursorPosition2D = new Vector2(CursorTrail.transform.position.x,CursorTrail.gameObject.transform.position.y);
-                    Debug.Log(Vector2.Distance(circlePosition2D,cursorPosition2D));
-                    if (Vector2.Distance(circlePosition2D,cursorPosition2D)<=CircleGreatRadius)
-                    {
-                        GameObject greatObject = Instantiate(greatPrefabList[0], MainHit.collider.gameObject.transform);
-                        greatObject.transform.parent = circleObjectParentGameObject.transform;
-                        
-                        Debug.Log("GREAT");
-                    }
-                    else
-                    {
-                        Debug.Log("GOOD");
-                    }
-                    
-                    MainHit.collider.gameObject.GetComponent<Circle>().Got();
-                    MainHit.collider.enabled = false;
-                    ClickedCount++;
-                }
             }
 
             switch (OperationMode)
@@ -248,17 +293,85 @@ public class GameHandler : MonoBehaviour
                 case OPERATION_MODE.MOUSE_CURSOR:
                     // Cursor trail movement
                     MousePosition = MainCamera.ScreenToWorldPoint(Input.mousePosition);
-                    CursorTrail.transform.position = new Vector3(MousePosition.x, MousePosition.y, -9);
+                    rightHandCursorTrail.transform.position =
+                        new Vector3(MousePosition.x + 0.3f, MousePosition.y + 0.3f, -9);
+                    rightFootCursorTrail.transform.position =
+                        new Vector3(MousePosition.x + 0.3f, MousePosition.y - 0.3f, -9);
+                    leftHandCursorTrail.transform.position =
+                        new Vector3(MousePosition.x - 0.3f, MousePosition.y + 0.3f, -9);
+                    leftFootCursorTrail.transform.position =
+                        new Vector3(MousePosition.x - 0.3f, MousePosition.y - 0.3f, -9);
                     break;
                 case OPERATION_MODE.TDPT:
-                    var position = cursorRightHandTargetPositionGameObject.transform.position;
-                    CursorTrail.transform.position = new Vector3(position.x, position.y, -9);
+                    Vector3 position;
+                    position = cursorRightHandTargetGameObject.transform.position;
+                    rightHandCursorTrail.transform.position = new Vector3(position.x, position.y, -9);
+                    position = cursorRightFootTargetGameObject.transform.position;
+                    rightFootCursorTrail.transform.position = new Vector3(position.x, position.y, -9);
+                    position = cursorLeftHandTargetGameObject.transform.position;
+                    leftHandCursorTrail.transform.position = new Vector3(position.x, position.y, -9);
+                    position = cursorLeftFootTargetGameObject.transform.position;
+                    leftFootCursorTrail.transform.position = new Vector3(position.x, position.y, -9);
+
                     break;
                 default:
                     break;
             }
 
             yield return null;
+        }
+    }
+
+    private void CursorCollideDetection(GameObject cursorGameObject)
+    {
+        if (Physics.Raycast(MainRay, out MainHit))
+        {
+            if (MainHit.collider.name == "Circle(Clone)" &&
+                timer >= MainHit.collider.gameObject.GetComponent<Circle>().PosA + ApprRate)
+            {
+                //GOOD, GREAT判定
+                Vector2 circlePosition2D;
+                var hitCirclePosition = MainHit.collider.gameObject.transform.position;
+                circlePosition2D = new Vector2(hitCirclePosition.x, hitCirclePosition.y);
+                Vector2 cursorPosition2D;
+                cursorPosition2D = new Vector2(cursorGameObject.transform.position.x,
+                    cursorGameObject.gameObject.transform.position.y);
+                if (Vector2.Distance(circlePosition2D, cursorPosition2D) <= CircleGreatRadius)
+                {
+                    GameObject greatObject = Instantiate(greatPrefabList[greatEffectIndex],
+                        MainHit.collider.gameObject.transform);
+                    greatObject.transform.Translate(Vector3.back);
+                    greatObject.transform.parent = circleObjectParentGameObject.transform;
+                    Destroy(greatObject, 1.0f);
+                    PlayerPrefs.SetInt("Great", PlayerPrefs.GetInt("Great") + 1);
+                    PlayerPrefs.SetInt("Score",
+                        PlayerPrefs.GetInt("Score") + greatScoreRate +
+                        PlayerPrefs.GetInt("Chain") * chainScoreRate * 2);
+                    PlayerPrefs.SetInt("Chain", PlayerPrefs.GetInt("Chain") + 1);
+                    PlayerPrefs.SetInt("MaxChain",
+                        Mathf.Max(PlayerPrefs.GetInt("Chain"), PlayerPrefs.GetInt("MaxChain")));
+                    soundManager.GreatSE();
+                }
+                else
+                {
+                    GameObject goodObject = Instantiate(goodPrefabList[goodEffectIndex],
+                        MainHit.collider.gameObject.transform);
+                    goodObject.transform.parent = circleObjectParentGameObject.transform;
+                    goodObject.transform.Translate(Vector3.back);
+                    Destroy(goodObject, 1.0f);
+                    PlayerPrefs.SetInt("Good", PlayerPrefs.GetInt("Good") + 1);
+                    PlayerPrefs.SetInt("Score",
+                        PlayerPrefs.GetInt("Score") + goodScoreRate + PlayerPrefs.GetInt("Chain") * chainScoreRate);
+                    PlayerPrefs.SetInt("Chain", PlayerPrefs.GetInt("Chain") + 1);
+                    PlayerPrefs.SetInt("MaxChain",
+                        Mathf.Max(PlayerPrefs.GetInt("Chain"), PlayerPrefs.GetInt("MaxChain")));
+                    soundManager.GoodSE();
+                }
+
+                MainHit.collider.gameObject.GetComponent<Circle>().Got();
+                MainHit.collider.enabled = false;
+                ClickedCount++;
+            }
         }
     }
 }
