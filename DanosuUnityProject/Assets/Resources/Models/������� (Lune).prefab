@@ -2864,7 +2864,7 @@ GameObject:
   - component: {fileID: 5788365880912993957}
   - component: {fileID: 6245347415822663338}
   m_Layer: 0
-  m_Name: Lune
+  m_Name: "\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD\uFFFD (Lune)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2924,7 +2924,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4431687141239471173}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 9000000, guid: eed4db616afa99c44b50a44abd48fa7d, type: 2}
   m_Controller: {fileID: 0}
   m_CullingMode: 0
