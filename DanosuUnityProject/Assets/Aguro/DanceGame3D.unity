@@ -1078,7 +1078,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &737313935
 Transform:
   m_ObjectHideFlags: 0
@@ -5832,7 +5832,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &772949564
 Transform:
   m_ObjectHideFlags: 0
@@ -11097,7 +11097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Circle: {fileID: 1048798711757196, guid: 33dcd1ecf841f55469f01a07afb530a3, type: 3}
-  MapFile: {fileID: 102900000, guid: fb707ee8540aa2046a9ab821c7267d3a, type: 3}
+  MapFile: {fileID: 102900000, guid: f477a4e22681d794692b984f815a0dcb, type: 3}
   MainMusic: {fileID: 8300000, guid: c461a93b3b09b414ab817d47eca39b88, type: 3}
   GreatSoundList: []
   GoodSoundList: []
@@ -20824,14 +20824,14 @@ RectTransform:
   m_GameObject: {fileID: 1668413093}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 20.58}
-  m_LocalScale: {x: 0.004789426, y: 0.007079416, z: 0.006981671}
+  m_LocalScale: {x: 0.008004575, y: 0.011831839, z: 0.011668476}
   m_Children: []
   m_Father: {fileID: 148139791}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.16, y: 0.66}
+  m_AnchoredPosition: {x: 1.395, y: 0.531}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!328 &1668413095

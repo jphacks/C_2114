@@ -265,20 +265,20 @@ public class GameHandler : MonoBehaviour
             MainRay = MainCamera.ScreenPointToRay(tmpCursor);
             CursorCollideDetection(rightHandCursorTrail);
 
-            tmpCursor = MainCamera.WorldToScreenPoint(rightFootCursorTrail.transform.position);
-            tmpCursor.z = 0;
-            MainRay = MainCamera.ScreenPointToRay(tmpCursor);
-            CursorCollideDetection(rightFootCursorTrail);
+            // tmpCursor = MainCamera.WorldToScreenPoint(rightFootCursorTrail.transform.position);
+            // tmpCursor.z = 0;
+            // MainRay = MainCamera.ScreenPointToRay(tmpCursor);
+            // CursorCollideDetection(rightFootCursorTrail);
 
             tmpCursor = MainCamera.WorldToScreenPoint(leftHandCursorTrail.transform.position);
             tmpCursor.z = 0;
             MainRay = MainCamera.ScreenPointToRay(tmpCursor);
             CursorCollideDetection(leftHandCursorTrail);
 
-            tmpCursor = MainCamera.WorldToScreenPoint(leftFootCursorTrail.transform.position);
-            tmpCursor.z = 0;
-            MainRay = MainCamera.ScreenPointToRay(tmpCursor);
-            CursorCollideDetection(leftFootCursorTrail);
+            // tmpCursor = MainCamera.WorldToScreenPoint(leftFootCursorTrail.transform.position);
+            // tmpCursor.z = 0;
+            // MainRay = MainCamera.ScreenPointToRay(tmpCursor);
+            // CursorCollideDetection(leftFootCursorTrail);
 
 
             // Spawn object
@@ -306,12 +306,12 @@ public class GameHandler : MonoBehaviour
                     Vector3 position;
                     position = cursorRightHandTargetGameObject.transform.position;
                     rightHandCursorTrail.transform.position = new Vector3(position.x, position.y, -9);
-                    position = cursorRightFootTargetGameObject.transform.position;
-                    rightFootCursorTrail.transform.position = new Vector3(position.x, position.y, -9);
+                    // position = cursorRightFootTargetGameObject.transform.position;
+                    // rightFootCursorTrail.transform.position = new Vector3(position.x, position.y, -9);
                     position = cursorLeftHandTargetGameObject.transform.position;
                     leftHandCursorTrail.transform.position = new Vector3(position.x, position.y, -9);
-                    position = cursorLeftFootTargetGameObject.transform.position;
-                    leftFootCursorTrail.transform.position = new Vector3(position.x, position.y, -9);
+                    // position = cursorLeftFootTargetGameObject.transform.position;
+                    // leftFootCursorTrail.transform.position = new Vector3(position.x, position.y, -9);
 
                     break;
                 default:
