@@ -11101,6 +11101,7 @@ MonoBehaviour:
   MainMusic: {fileID: 8300000, guid: c461a93b3b09b414ab817d47eca39b88, type: 3}
   GreatSoundList: []
   GoodSoundList: []
+  CircleList: []
   cursorRightHandTargetGameObject: {fileID: 869333471762403806}
   cursorLeftHandTargetGameObject: {fileID: 7650303185430165927}
   cursorRightFootTargetGameObject: {fileID: 8482772119663398535}
@@ -21050,7 +21051,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1740670543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74782,6 +74783,7 @@ GameObject:
   - component: {fileID: 167256495113639204}
   - component: {fileID: 167256495113639205}
   - component: {fileID: 167256495113639215}
+  - component: {fileID: 4598937304167685548}
   m_Layer: 0
   m_Name: Lune
   m_TagString: Untagged
@@ -74789,6 +74791,31 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4598937304167685548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4598937304167685547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1722722782, guid: b7e71c7f2f0217840aad4edad241cb46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FileName: RecordingDataTest
+  IsVoiceRecordOnEditor: 0
+  RecordObjs:
+  - Obj: {fileID: 4431750595493038657}
+    Type: 1
+  StartOnEditor: 1
+  EndOnEditor: 0
+  DataSize: 0
+  Setting:
+    CanOverWrite: 1
+    IsDebugWrite: 0
+    SaveOnRunning: 0
+    SaveRate: 1000
 --- !u!1 &4625082656238090148
 GameObject:
   m_ObjectHideFlags: 0
