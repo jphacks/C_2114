@@ -239,7 +239,6 @@ public class GameHandler : MonoBehaviour
             // 曲の再生が終わっていたらシーン遷移します。
             if (Music.time + Time.deltaTime > Music.clip.length && Music.isPlaying)
             {
-                Debug.Log("aaaaa");
                 PlayerPrefs.SetInt("State", 3);
                 SceneManager.LoadScene("Studio3D");
             }
