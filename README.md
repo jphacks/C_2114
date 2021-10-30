@@ -2,6 +2,9 @@
 
 [![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2021/07/JPHACKS2021_ogp.jpg)](https://www.youtube.com/watch?v=LUPQFB4QyVo)
 
+DanOsu!の紹介動画を以下に載せました。
+https://youtu.be/6yXjHkQuYDI
+
 ## 製品概要
 ### 背景(製品開発のきっかけ、課題等）
 ### 製品説明（具体的な製品の説明）
