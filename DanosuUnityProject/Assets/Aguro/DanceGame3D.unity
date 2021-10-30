@@ -401,7 +401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &148139788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10948,7 +10948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1058165176
 Transform:
   m_ObjectHideFlags: 0
@@ -21066,6 +21066,10 @@ MonoBehaviour:
   SourceDeviceDropdown: {fileID: 167256494854047528}
   SourceDeviceButton: {fileID: 167256494349707223}
   CloseMenuButton: {fileID: 167256495026456191}
+  DanceMovieCanvas: {fileID: 148139787}
+  OsuGameObject: {fileID: 1058165175}
+  enableDanceMovieCanvasTime: 1.042
+  enableOsuGameObjectTime: 1
 --- !u!4 &1740670544
 Transform:
   m_ObjectHideFlags: 0

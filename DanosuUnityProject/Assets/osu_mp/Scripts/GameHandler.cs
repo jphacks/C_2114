@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class GameHandler : MonoBehaviour
@@ -29,7 +30,7 @@ public class GameHandler : MonoBehaviour
     public static int ClickedCount = 0; // Clicked objects counter
     private static int ObjCount = 0; // Spawned objects counter
 
-    private List<GameObject> CircleList; // Circles List
+    [SerializeField] private List<GameObject> CircleList; // Circles List
     private static string[] LineParams; // Object Parameters
 
     // Audio stuff
@@ -235,6 +236,20 @@ public class GameHandler : MonoBehaviour
     {
         while (true)
         {
+            // 曲の再生が終わっていたらシーン遷移します。
+            if (Music.time + Time.deltaTime > Music.clip.length && Music.isPlaying)
+            {
+                Debug.Log("aaaaa");
+                PlayerPrefs.SetInt("State", 3);
+                SceneManager.LoadScene("Studio3D");
+            }
+
+            if (ObjCount >= CircleList.Count)
+            {
+                yield return null;
+                continue;
+            }
+
             timer = (Music.time * 1000); // Convert timer
             DelayPos = (CircleList[ObjCount].GetComponent<Circle>().PosA);
             //MainRay = MainCamera.ScreenPointToRay(Input.mousePosition);
@@ -334,7 +349,8 @@ public class GameHandler : MonoBehaviour
                         PlayerPrefs.GetInt("Score") + greatScoreRate +
                         PlayerPrefs.GetInt("Chain") * chainScoreRate * 2);
                     PlayerPrefs.SetInt("Chain", PlayerPrefs.GetInt("Chain") + 1);
-                    PlayerPrefs.SetInt("MaxChain", Mathf.Max(PlayerPrefs.GetInt("Chain"),PlayerPrefs.GetInt("MaxChain")));
+                    PlayerPrefs.SetInt("MaxChain",
+                        Mathf.Max(PlayerPrefs.GetInt("Chain"), PlayerPrefs.GetInt("MaxChain")));
                     soundManager.GreatSE();
                 }
                 else
@@ -348,7 +364,8 @@ public class GameHandler : MonoBehaviour
                     PlayerPrefs.SetInt("Score",
                         PlayerPrefs.GetInt("Score") + goodScoreRate + PlayerPrefs.GetInt("Chain") * chainScoreRate);
                     PlayerPrefs.SetInt("Chain", PlayerPrefs.GetInt("Chain") + 1);
-                    PlayerPrefs.SetInt("MaxChain", Mathf.Max(PlayerPrefs.GetInt("Chain"),PlayerPrefs.GetInt("MaxChain")));
+                    PlayerPrefs.SetInt("MaxChain",
+                        Mathf.Max(PlayerPrefs.GetInt("Chain"), PlayerPrefs.GetInt("MaxChain")));
                     soundManager.GoodSE();
                 }
 
