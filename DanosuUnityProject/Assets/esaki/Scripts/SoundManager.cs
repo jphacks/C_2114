@@ -82,11 +82,11 @@ public class SoundManager : MonoBehaviour
     }
     public void ChangeGreatSE(int i)
     {
-        PlayerPrefs.SetInt("GreatSound", i);
+        PlayerPrefs.SetInt("GreatSoundIndex", i);
     }
     public void ChangeGoodSE(int i)
     {
-        PlayerPrefs.SetInt("GoodSound", i);
+        PlayerPrefs.SetInt("GoodSoundIndex", i);
     }
 
     public void PlaySound(int i)

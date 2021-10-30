@@ -70,14 +70,6 @@ public class Circle : MonoBehaviour
         {
             RemoveNow = true;
             this.enabled = true;
-
-            //MissEffectを追加します。
-            GameObject missObject = Instantiate(missPrefabList[missEffectIndex], this.transform);
-            missObject.transform.Translate(Vector3.back);
-            missObject.transform.parent = this.transform;
-            Destroy(missObject, 1.0f);
-            PlayerPrefs.SetInt("Miss", PlayerPrefs.GetInt("Miss") + 1);
-            PlayerPrefs.SetInt("Chain", 0);
         }
     }
 
@@ -131,6 +123,13 @@ public class Circle : MonoBehaviour
             // Remove circle
             if (!RemoveNow)
             {
+                //MissEffectを追加します。
+                GameObject missObject = Instantiate(missPrefabList[missEffectIndex], this.transform);
+                missObject.transform.Translate(Vector3.back);
+                missObject.transform.parent = this.transform.parent.transform;
+                Destroy(missObject, 1.0f);
+                PlayerPrefs.SetInt("Miss", PlayerPrefs.GetInt("Miss") + 1);
+                PlayerPrefs.SetInt("Chain", 0);
                 MainApproach.transform.position = new Vector2(-101, -101);
                 this.enabled = false;
             }

@@ -15,7 +15,8 @@ public class GameHandler : MonoBehaviour
 
     [Header("Map")] public DefaultAsset MapFile; // Map file (.osu format), attach from editor
     public AudioClip MainMusic; // Music file, attach from editor
-    public AudioClip HitSound; // Hit sound
+    public List<AudioClip> GreatSoundList; // Hit sound
+    public List<AudioClip> GoodSoundList; // Hit sound
 
     // ----------------------------------------------------------------------------
 
@@ -73,7 +74,7 @@ public class GameHandler : MonoBehaviour
 
     [SerializeField] private OPERATION_MODE OperationMode;
     [SerializeField] private float CircleGreatRadius = 0.15f;
-
+    [SerializeField] private SoundManager soundManager;
 
     private void Start()
     {
@@ -86,7 +87,6 @@ public class GameHandler : MonoBehaviour
         leftFootCursorTrail = GameObject.Find("LeftFootCursorTrail");
         Music.clip = MainMusic;
         pSounds = Sounds;
-        pHitSound = HitSound;
         CircleList = new List<GameObject>();
         ReadCircles(AssetDatabase.GetAssetPath(MapFile));
 
@@ -335,6 +335,7 @@ public class GameHandler : MonoBehaviour
                         PlayerPrefs.GetInt("Chain") * chainScoreRate * 2);
                     PlayerPrefs.SetInt("Chain", PlayerPrefs.GetInt("Chain") + 1);
                     PlayerPrefs.SetInt("MaxChain", Mathf.Max(PlayerPrefs.GetInt("Chain"),PlayerPrefs.GetInt("MaxChain")));
+                    soundManager.GreatSE();
                 }
                 else
                 {
@@ -348,6 +349,7 @@ public class GameHandler : MonoBehaviour
                         PlayerPrefs.GetInt("Score") + goodScoreRate + PlayerPrefs.GetInt("Chain") * chainScoreRate);
                     PlayerPrefs.SetInt("Chain", PlayerPrefs.GetInt("Chain") + 1);
                     PlayerPrefs.SetInt("MaxChain", Mathf.Max(PlayerPrefs.GetInt("Chain"),PlayerPrefs.GetInt("MaxChain")));
+                    soundManager.GoodSE();
                 }
 
                 MainHit.collider.gameObject.GetComponent<Circle>().Got();
