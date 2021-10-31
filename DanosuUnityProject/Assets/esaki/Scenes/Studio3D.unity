@@ -5564,7 +5564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 091f8e2a59f0e874e9a2961a57de0837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: dfd0363e20598c245baf9999c04f0bf4, type: 2}
+  mat: {fileID: 2100000, guid: 251f0893ca78c49448396c8359a9cac2, type: 2}
 --- !u!114 &313429426
 MonoBehaviour:
   m_ObjectHideFlags: 0

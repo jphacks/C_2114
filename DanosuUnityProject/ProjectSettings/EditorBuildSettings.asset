@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/esaki/Scenes/Studio3D.unity
+    guid: f41aa90897105b64aa9d2816425a6f0c
+  - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 5deb965500846b64ab123fdbbbc2de24
   - enabled: 0
@@ -14,9 +17,6 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/esaki/Scenes/Studio3D.unity
-    guid: f41aa90897105b64aa9d2816425a6f0c
   - enabled: 0
     path: Assets/esaki/Scenes/DanceGame3D.unity
     guid: 4cb46f5918d9cb449befa4beae63e7a4
