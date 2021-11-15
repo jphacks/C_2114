@@ -528,32 +528,32 @@ public class UIScript : MonoBehaviour
 
     private void SetLipSync()
     {
-        var mic = LipSyncObject.GetComponent<MicSelecter>();
-        
-        if (configurationSetting.UseLipSync == 1)
-        {
-            mic.enabled = true;
-            mic.InitializeMic(configurationSetting.SelectedMic);
-        }
-        else
-        {
-            mic.enabled = false;
-        }
-
-        var lip = LipSyncObject.GetComponent<VRMLipSyncContextMorphTarget>();
-        lip.smoothAmount = configurationSetting.LipSyncSmoothAmount;
-        lip.LipSyncSensitivity = configurationSetting.LipSyncSensitivity;
-        lip.SetVRMBlendShapeProxy(configurationSetting.UseLipSync == 1);
+        // var mic = LipSyncObject.GetComponent<MicSelecter>();
+        //
+        // if (configurationSetting.UseLipSync == 1)
+        // {
+        //     mic.enabled = true;
+        //     mic.InitializeMic(configurationSetting.SelectedMic);
+        // }
+        // else
+        // {
+        //     mic.enabled = false;
+        // }
+        //
+        // var lip = LipSyncObject.GetComponent<VRMLipSyncContextMorphTarget>();
+        // lip.smoothAmount = configurationSetting.LipSyncSmoothAmount;
+        // lip.LipSyncSensitivity = configurationSetting.LipSyncSensitivity;
+        // lip.SetVRMBlendShapeProxy(configurationSetting.UseLipSync == 1);
 
     }
 
     private void SetAutoBlink()
     {
-        var lip = LipSyncObject.GetComponent<VRMLipSyncContextMorphTarget>();
-        lip.timeBlink = configurationSetting.TimeBlink;
-        lip.threshold = configurationSetting.AutoBlinkThreshold;
-        lip.interval = configurationSetting.AutoBlinkInterval;
-        lip.SetAutoBlink(configurationSetting.UseAutoBlink == 1);
+        // var lip = LipSyncObject.GetComponent<VRMLipSyncContextMorphTarget>();
+        // lip.timeBlink = configurationSetting.TimeBlink;
+        // lip.threshold = configurationSetting.AutoBlinkThreshold;
+        // lip.interval = configurationSetting.AutoBlinkInterval;
+        // lip.SetAutoBlink(configurationSetting.UseAutoBlink == 1);
 
     }
 
