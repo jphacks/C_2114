@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 114692418342517324}
   - component: {fileID: 2054248720235444419}
   m_Layer: 0
-  m_Name: DanOsuCircle
+  m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,6 +55,12 @@ MonoBehaviour:
   Fore: {fileID: 212759885179515234}
   Back: {fileID: 212883330347435912}
   Appr: {fileID: 0}
+  missPrefabList:
+  - {fileID: 6761743950942420682, guid: 3d92d1dadea358b4093121a79ad5beb2, type: 3}
+  - {fileID: 6187388439069124658, guid: 899d0ccadfb24954b803167307afe8e2, type: 3}
+  - {fileID: 1929908572380006792, guid: baae18f9fe1bd594fa20f6468cacff2a, type: 3}
+  - {fileID: 2074389548910105808, guid: d2b19662441019140b82bf7e975d3137, type: 3}
+  - {fileID: 4933769917341022562, guid: 08ab3fa152f825e4abc65ea359e327b6, type: 3}
 --- !u!135 &2054248720235444419
 SphereCollider:
   m_ObjectHideFlags: 0
