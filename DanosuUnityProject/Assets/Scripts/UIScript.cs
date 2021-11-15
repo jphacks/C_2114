@@ -470,6 +470,7 @@ public class UIScript : MonoBehaviour
         {
             btnSourceDevice.GetComponentInChildren<Text>().text = "Start Cam";
         }
+        PlayerPrefs.SetInt("CameraNumber",value);
     }
 
     public void onSourceDevice()

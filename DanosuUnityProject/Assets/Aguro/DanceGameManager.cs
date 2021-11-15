@@ -32,7 +32,7 @@ public class DanceGameManager : MonoBehaviour
         // Startだとエラーが発生するのでUpdate上で一度だけ動かしています。
         if (!isCameraPrepared)
         {
-            SourceDeviceDropdown.value = 1;
+            SourceDeviceDropdown.value = PlayerPrefs.GetInt("CameraNumber");
             SourceDeviceButton.onClick.Invoke();
             CloseMenuButton.onClick.Invoke();
             isCameraPrepared = true;
