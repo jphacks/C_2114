@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 using System.IO;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -14,7 +13,10 @@ public class GameHandler : MonoBehaviour
 
     [Header("Objects")] public GameObject Circle; // Circle Object
 
-    [Header("Map")] public DefaultAsset MapFile; // Map file (.osu format), attach from editor
+    //[Header("Map")] public DefaultAsset MapFile; // Map file (.osu format), attach from editor
+    public TextAsset MapFile; //FIXME: .osuファイルを.txtファイルに変更してInspector上に設定する必要があります。
+    
+    
     public AudioClip MainMusic; // Music file, attach from editor
     public List<AudioClip> GreatSoundList; // Hit sound
     public List<AudioClip> GoodSoundList; // Hit sound
@@ -66,6 +68,9 @@ public class GameHandler : MonoBehaviour
     [SerializeField] private int goodScoreRate = 50;
     [SerializeField] private int chainScoreRate = 5;
 
+    //Application.dataPath 以下のOsu!の譜面データのファイルパスを保存します。
+    [SerializeField] private List<string> mapFilePathList;
+
 
     private enum OPERATION_MODE
     {
@@ -89,7 +94,9 @@ public class GameHandler : MonoBehaviour
         Music.clip = MainMusic;
         pSounds = Sounds;
         CircleList = new List<GameObject>();
-        ReadCircles(AssetDatabase.GetAssetPath(MapFile));
+        //ReadCircles(AssetDatabase.GetAssetPath(MapFile));
+        //Debug.Log(Application.dataPath+mapFilePathList[0]);
+        ReadCircles(Application.dataPath+mapFilePathList[0]);
 
         if (!PlayerPrefs.HasKey("GreatEffect"))
         {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.4447796, g: 0.4943261, b: 0.5735286, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -401,7 +401,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &148139788
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10948,7 +10948,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1058165176
 Transform:
   m_ObjectHideFlags: 0
@@ -11097,7 +11097,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Circle: {fileID: 1048798711757196, guid: 33dcd1ecf841f55469f01a07afb530a3, type: 3}
-  MapFile: {fileID: 102900000, guid: f477a4e22681d794692b984f815a0dcb, type: 3}
+  MapFile: {fileID: 4900000, guid: 044786ab0be6ce44180fb15e89464727, type: 3}
   MainMusic: {fileID: 8300000, guid: c461a93b3b09b414ab817d47eca39b88, type: 3}
   GreatSoundList: []
   GoodSoundList: []
@@ -11123,6 +11123,10 @@ MonoBehaviour:
   greatScoreRate: 100
   goodScoreRate: 50
   chainScoreRate: 5
+  mapFilePathList:
+  - /StreamingAssets/OsuMaps/MiraiKomachi - MIRAI (aguroshou) [Easy]_Ver3.3.osu
+  - 
+  - 
   OperationMode: 1
   CircleGreatRadius: 0.15
   soundManager: {fileID: 8183280518328964170}
@@ -11178,7 +11182,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 8c37d3df06d859c47923a5d9e9ac517a, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -16020,7 +16023,6 @@ ParticleSystemRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 8c37d3df06d859c47923a5d9e9ac517a, type: 2}
-  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21051,7 +21053,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1740670543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22523,6 +22525,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256493367180751
 GameObject:
   m_ObjectHideFlags: 0
@@ -23448,6 +23451,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256493410457363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24192,6 +24196,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!222 &167256493464964648
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -24624,6 +24629,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256493474207435
 GameObject:
   m_ObjectHideFlags: 0
@@ -25644,6 +25650,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256493558459089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26978,6 +26985,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256493624039203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28614,6 +28622,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256493701971843
 GameObject:
   m_ObjectHideFlags: 0
@@ -30166,6 +30175,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!224 &167256493757060552
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30926,6 +30936,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256493779422972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32468,6 +32479,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!224 &167256493863462408
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32773,6 +32785,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256493871163987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33594,6 +33607,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256493912681243
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34150,6 +34164,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256493929667251
 GameObject:
   m_ObjectHideFlags: 0
@@ -34370,6 +34385,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256493940416595
 GameObject:
   m_ObjectHideFlags: 0
@@ -34566,6 +34582,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256493958454789
 GameObject:
   m_ObjectHideFlags: 0
@@ -36355,6 +36372,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256494018965978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36785,6 +36803,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256494033226839
 GameObject:
   m_ObjectHideFlags: 0
@@ -37023,6 +37042,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256494048440057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37815,6 +37835,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256494071456613
 GameObject:
   m_ObjectHideFlags: 0
@@ -38341,6 +38362,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256494076030877
 GameObject:
   m_ObjectHideFlags: 0
@@ -39022,6 +39044,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256494125523765
 GameObject:
   m_ObjectHideFlags: 0
@@ -39667,6 +39690,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256494156132307
 GameObject:
   m_ObjectHideFlags: 0
@@ -39794,6 +39818,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256494156657515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40259,6 +40284,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256494179359531
 GameObject:
   m_ObjectHideFlags: 0
@@ -40919,6 +40945,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256494216316339
 GameObject:
   m_ObjectHideFlags: 0
@@ -41882,6 +41909,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256494250160303
 GameObject:
   m_ObjectHideFlags: 0
@@ -42480,6 +42508,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256494275374517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42670,6 +42699,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256494277293085
 GameObject:
   m_ObjectHideFlags: 0
@@ -43209,6 +43239,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256494305354647
 GameObject:
   m_ObjectHideFlags: 0
@@ -43706,6 +43737,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256494325845127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44750,6 +44782,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256494347219715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45060,6 +45093,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256494350591199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45210,6 +45244,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256494351929765
 GameObject:
   m_ObjectHideFlags: 0
@@ -47150,6 +47185,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256494464588393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48528,6 +48564,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256494541358979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -48681,6 +48718,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256494544708979
 GameObject:
   m_ObjectHideFlags: 0
@@ -49400,6 +49438,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256494575052903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50356,6 +50395,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256494634060349
 GameObject:
   m_ObjectHideFlags: 0
@@ -50794,6 +50834,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256494648187872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52240,6 +52281,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256494727886167
 GameObject:
   m_ObjectHideFlags: 0
@@ -52322,6 +52364,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256494738253929
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52555,6 +52598,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256494742601419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52782,6 +52826,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256494750453227
 GameObject:
   m_ObjectHideFlags: 0
@@ -53997,6 +54042,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256494783240347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54723,6 +54769,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!222 &167256494805037832
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -54794,6 +54841,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256494805037835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -56132,6 +56180,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256494856316247
 GameObject:
   m_ObjectHideFlags: 0
@@ -56383,6 +56432,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256494868815155
 GameObject:
   m_ObjectHideFlags: 0
@@ -57513,6 +57563,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256494911937093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58247,6 +58298,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256494935357861
 GameObject:
   m_ObjectHideFlags: 0
@@ -58337,6 +58389,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256494937649589
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58906,6 +58959,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256494963186419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59279,6 +59333,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256495001525687
 GameObject:
   m_ObjectHideFlags: 0
@@ -60093,6 +60148,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256495032679751
 GameObject:
   m_ObjectHideFlags: 0
@@ -60537,6 +60593,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256495047762255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61032,6 +61089,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256495067751821
 GameObject:
   m_ObjectHideFlags: 0
@@ -62326,6 +62384,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256495116130669
 GameObject:
   m_ObjectHideFlags: 0
@@ -62466,6 +62525,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256495117506549
 GameObject:
   m_ObjectHideFlags: 0
@@ -63305,6 +63365,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256495163796733
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63644,6 +63705,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!224 &167256495179131128
 RectTransform:
   m_ObjectHideFlags: 0
@@ -63728,6 +63790,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256495179131131
 GameObject:
   m_ObjectHideFlags: 0
@@ -64670,6 +64733,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256495212189673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64974,6 +65038,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256495229622765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66115,6 +66180,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256495300113767
 GameObject:
   m_ObjectHideFlags: 0
@@ -67307,6 +67373,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256495360904327
 GameObject:
   m_ObjectHideFlags: 0
@@ -69642,6 +69709,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!114 &167256495439128279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -70588,6 +70656,7 @@ MonoBehaviour:
   m_CaretBlinkRate: 0.85
   m_CaretWidth: 1
   m_ReadOnly: 0
+  m_ShouldActivateOnSelect: 1
 --- !u!1 &167256495473285389
 GameObject:
   m_ObjectHideFlags: 0
